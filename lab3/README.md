@@ -1,113 +1,129 @@
-Overview
+# Variational Autoencoder (VAE) – Lab 3
 
-This lab focuses on understanding and implementing a Variational Autoencoder (VAE), a generative deep learning model capable of learning latent probability distributions and generating new data samples.
-The experiment is performed using image data to study reconstruction quality, latent space behavior, and sample generation.
+Implementation of a **Variational Autoencoder (VAE)** for image reconstruction and generation as part of the *CSET419 – Introduction to Generative AI* course.
 
-Unlike standard autoencoders, a VAE learns a distribution over the latent space, enabling it to generate novel and diverse outputs.
+This repository demonstrates how VAEs learn probabilistic latent representations and generate new samples by modeling data distributions instead of fixed encodings.
 
-Objectives
+---
 
-Understand the working principle of Variational Autoencoders
+## 📌 Features
 
-Learn the difference between Autoencoders and VAEs
+* Variational Autoencoder implemented from scratch
+* Encoder–decoder architecture with reparameterization trick
+* KL Divergence + Reconstruction loss
+* Image reconstruction and generation
+* Training loss visualization
 
-Implement a VAE using a deep learning framework
+---
 
-Train the VAE on image data
+## 🧠 Concept Overview
 
-Generate new images from the learned latent space
+A **Variational Autoencoder** differs from a standard autoencoder by learning a *distribution* over the latent space rather than a deterministic encoding.
 
-Dataset
+The encoder outputs:
 
-The experiment uses one of the following datasets:
+* Mean (μ)
+* Log variance (log σ²)
 
-MNIST (handwritten digits)
+A latent vector is sampled using:
 
-Fashion-MNIST (clothing items)
+```
+z = μ + σ × ε   , ε ~ N(0,1)
+```
 
-The dataset is normalized and split into training and testing sets before model training.
+This enables smooth latent spaces and meaningful data generation.
 
-Model Architecture
-Encoder
+---
 
-Takes an input image
+## 📂 Dataset
 
-Outputs:
+The project uses one of the following datasets:
 
-Mean (μ)
+* **MNIST** (handwritten digits)
+* **Fashion-MNIST** (clothing items)
 
-Log variance (log σ²)
+Preprocessing steps:
 
-These parameters define a probability distribution in latent space.
+* Normalization of pixel values to range [0,1]
+* Splitting into training and testing sets
 
-Reparameterization Trick
+---
 
-To enable backpropagation through random sampling:
+## 🏗️ Model Architecture
 
-z = μ + σ × ε , where ε ~ N(0,1)
+### Encoder
 
-Decoder
+* Input: Image
+* Output: Mean (μ) and log variance (log σ²)
 
-Takes latent vector z
+### Latent Space
 
-Reconstructs the input image
+* Sampling performed using the reparameterization trick
 
-Loss Function
+### Decoder
 
-The VAE loss consists of two components:
+* Input: Latent vector `z`
+* Output: Reconstructed image
 
-Reconstruction Loss
+---
 
-Measures similarity between input and reconstructed image
+## 📉 Loss Function
 
-Binary Cross-Entropy or Mean Squared Error
+The total VAE loss consists of:
 
-KL Divergence Loss
+1. **Reconstruction Loss**
 
-Regularizes latent space to follow a standard normal distribution
+   * Binary Cross-Entropy or Mean Squared Error
+   * Measures reconstruction quality
 
-Total Loss = Reconstruction Loss + KL Divergence Loss
+2. **KL Divergence Loss**
 
-Training
+   * Regularizes latent space to follow a standard normal distribution
 
-The model is trained for multiple epochs
+```
+Total Loss = Reconstruction Loss + KL Divergence
+```
 
-Training loss is monitored to observe convergence
+---
 
-Reconstructed images improve gradually during training
+## 🚀 Training
 
-Sample Generation
+* Model trained for multiple epochs
+* Training loss monitored during learning
+* Reconstruction quality improves progressively
+
+---
+
+## 🎨 Sample Generation
 
 After training:
 
-Random latent vectors are sampled from a standard normal distribution
+* Latent vectors are sampled from a standard normal distribution
+* Passed directly through the decoder
+* New images are generated that were not part of the training data
 
-These vectors are passed through the decoder
+---
 
-The decoder generates new images that were not present in the training dataset
+## 📊 Results
 
-Results
+The project produces:
 
-The following outputs are obtained:
+* Trained VAE model
+* Original vs reconstructed images
+* Newly generated images
+* Training loss curve
 
-Trained VAE model
+---
 
-Reconstructed images
+## 🛠️ Tech Stack
 
-Newly generated images
+* Python
+* PyTorch / TensorFlow
+* NumPy
+* Matplotlib
 
-Loss curve showing training progress
+---
 
-Technologies Used
+## 📌 Conclusion
 
-Python
-
-PyTorch / TensorFlow
-
-NumPy
-
-Matplotlib
-
-Conclusion
-
-This lab demonstrates how Variational Autoencoders learn smooth latent representations and generate new data samples. VAEs form the foundation for many modern generative models and help in understanding probabilistic deep learning concepts.
+This project demonstrates how Variational Autoencoders learn smooth latent representations and generate new data samples. VAEs form a foundational concept for advanced generative models such as diffusion models.
