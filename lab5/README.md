@@ -120,7 +120,6 @@ predict **average pixel values**, which smooths fine details.
 Clone the repository:
 
 git clone
-https://github.com/yourusername/encoder-decoder-image-translation.git
 
 Move to the project directory:
 
