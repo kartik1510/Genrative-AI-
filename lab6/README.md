@@ -161,8 +161,3 @@ This project demonstrates the use of **Pix2Pix GAN for image-to-image translatio
 Pix2Pix performs significantly better than a simple CNN encoder–decoder because adversarial learning helps produce sharper and more detailed images.
 
 ---
-
-## Author
-
-Kartik
-Computer Science Engineering
